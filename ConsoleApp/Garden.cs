@@ -25,7 +25,7 @@ public class Garden
 
         if (Items.Contains(name))
         {
-            name += (Items.Count(x => x.StartsWith(name)) + 2);
+            name += (Items.Count(x => x.StartsWith(name)) + 1);
         }
 
         Items.Add(name);

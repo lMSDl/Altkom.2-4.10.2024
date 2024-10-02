@@ -91,12 +91,13 @@ namespace ConsoleApp.Text.xUnit
             Garden garden = new Garden(GARDEN_SIZE);
             Enumerable.Repeat(duplicatedName, numberOfCopies).ToList()
                 .ForEach(x => garden.Plant(x));
+            var plants = garden.GetPlants();
 
             //Act
             garden.Plant(duplicatedName);
 
             //Assert
-            Assert.Contains(expectedName, garden.GetPlants());
+            Assert.Contains(expectedName, garden.GetPlants().Except(plants));
         }
 
         [Fact]
