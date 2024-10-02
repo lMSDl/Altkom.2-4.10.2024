@@ -8,6 +8,8 @@ public class Garden
 
     public Garden(int size)
     {
+        if(size < 0)
+            throw new ArgumentOutOfRangeException("size");
         Size = size;
         Items = [];
     }
@@ -36,5 +38,24 @@ public class Garden
     public IEnumerable<string> GetPlants()
     {
         return Items.ToList();
+    }
+
+    public bool Remove(string name)
+    {
+        if(!Items.Contains(name))
+            return false;
+
+        _ = Items.Remove(name);
+        return true;
+    }
+
+    public void Clear()
+    {
+        Items.Clear();
+    }
+
+    public int Count()
+    {
+        return Items.Count;
     }
 }
