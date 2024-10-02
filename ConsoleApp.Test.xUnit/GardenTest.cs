@@ -1,6 +1,6 @@
 using AutoFixture;
 
-namespace ConsoleApp.Text.xUnit
+namespace ConsoleApp.Test.xUnit
 {
     public class GardenTest
     {
