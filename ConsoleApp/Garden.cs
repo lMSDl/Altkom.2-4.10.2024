@@ -1,4 +1,6 @@
-﻿namespace ConsoleApp;
+﻿using ConsoleApp.Properties;
+
+namespace ConsoleApp;
 public class Garden
 {
     public int Size { get; }
@@ -16,14 +18,14 @@ public class Garden
             throw new ArgumentNullException(nameof(name));
 
         if (string.IsNullOrWhiteSpace(name))
-            throw new ArgumentException("Roślina musi posiadać nazwę", nameof(name));
+            throw new ArgumentException(Resources.WhitespaceNameException, nameof(name));
 
         if (Items.Count >= Size)
             return false;
 
         if (Items.Contains(name))
         {
-            name += (Items.Count(x => x.StartsWith(name)) + 1);
+            name += (Items.Count(x => x.StartsWith(name)) + 2);
         }
 
         Items.Add(name);
