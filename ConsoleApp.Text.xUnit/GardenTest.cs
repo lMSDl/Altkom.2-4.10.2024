@@ -183,5 +183,20 @@ namespace ConsoleApp.Text.xUnit
             Assert.Equal(EXPECTED_PARAMETER_NAME, argumentException.ParamName);
             Assert.Contains(expectedMessage, argumentException.Message);
         }
+
+        [Fact]
+        public void GetPlants_CopyOfPlantsCollection()
+        {
+            //Arrange
+            const int GARDEN_SIZE = 0;
+            Garden garden = new Garden(GARDEN_SIZE);
+
+            //Act
+            var result1 = garden.GetPlants();
+            var result2 = garden.GetPlants();
+
+            //Assert
+            Assert.NotSame(result1, result2);
+        }
     }
 }
