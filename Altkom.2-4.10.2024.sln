@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp.Test.MSTest", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp.Test.NUnit", "ConsoleApp.Test.NUnit\ConsoleApp.Test.NUnit.csproj", "{08A470CD-C574-40A6-9047-3243B0F3F09B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop", "Shop\Shop.csproj", "{D6139E93-BF3B-4667-AB83-68353678726C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{08A470CD-C574-40A6-9047-3243B0F3F09B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08A470CD-C574-40A6-9047-3243B0F3F09B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08A470CD-C574-40A6-9047-3243B0F3F09B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6139E93-BF3B-4667-AB83-68353678726C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6139E93-BF3B-4667-AB83-68353678726C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6139E93-BF3B-4667-AB83-68353678726C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6139E93-BF3B-4667-AB83-68353678726C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
