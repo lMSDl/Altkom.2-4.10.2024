@@ -2,8 +2,38 @@ using AutoFixture;
 
 namespace ConsoleApp.Test.xUnit
 {
-    public class GardenTest
+    public class GardenTest : IDisposable
     {
+        private Garden Garden { get; }
+        //xUnit wykorzystuje konstuktor jako metodê SetUp [BadPractice]
+        public GardenTest()
+        {
+            Garden = new Garden(int.MaxValue);
+        }
+
+        //xUnit wykorzystuje Dispose jako metodê TearDown [BadPractice]
+        public void Dispose()
+        {
+        }
+
+        //zamiast metod SetUp i TearDown zaleca siê twrzonenie przywatnych metod (najlepiej opisuj¹cych intencje)
+        private Garden CreateGardenInsignificantSize()
+        {
+            return new Garden(0);
+        }
+
+
+        private Garden CreateGardenUnlimitedSpace()
+        {
+            return new Garden(int.MaxValue);
+        }
+
+        private Garden CreateGardenCustomSize(int size)
+        {
+            return new Garden(size);
+        }
+
+
         [Fact]
         //public void Plant_GivesTrueWhenNameIsValid()
         //<nazmwa metody>_<scenariusz>_<oczekiwany rezultat>
@@ -14,7 +44,7 @@ namespace ConsoleApp.Test.xUnit
             const int MINIMAL_VALID_SIZE = 1; //opisujemy swoje intencje
             //const string VALID_PLANT_NAME = "0"; //piszemy testy z minimalnym przekazem (parametry o jak najmniejszym polem do interpretacji)
             string validPlantName = new Fixture().Create<string>();
-            Garden garden = new Garden(MINIMAL_VALID_SIZE);
+            Garden garden = CreateGardenCustomSize(MINIMAL_VALID_SIZE);
 
             //Act
             var result = garden.Plant(validPlantName);
@@ -31,7 +61,7 @@ namespace ConsoleApp.Test.xUnit
             //Arrange
             const int MINIMAL_VALID_SIZE = 1;
             string validPlantName = new Fixture().Create<string>();
-            Garden garden = new Garden(MINIMAL_VALID_SIZE);
+            Garden garden = CreateGardenCustomSize(MINIMAL_VALID_SIZE);
             garden.Plant(validPlantName);
 
             //Act
@@ -85,10 +115,11 @@ namespace ConsoleApp.Test.xUnit
         public void Plant_DuplicatedName_DuplicationCounterAddedToName(int numberOfCopies, int expectedCounter)
         {
             //Arrange
-            const int GARDEN_SIZE = int.MaxValue;
+            //const int GARDEN_SIZE = int.MaxValue;
             string duplicatedName = new Fixture().Create<string>();
             string expectedName = duplicatedName + expectedCounter;
-            Garden garden = new Garden(GARDEN_SIZE);
+            //Garden garden = new Garden(GARDEN_SIZE);
+            Garden garden = CreateGardenUnlimitedSpace();
             Enumerable.Repeat(duplicatedName, numberOfCopies).ToList()
                 .ForEach(x => garden.Plant(x));
             var plants = garden.GetPlants();
@@ -104,8 +135,9 @@ namespace ConsoleApp.Test.xUnit
         public void Plant_NullName_ArgumentNullException()
         {
             //Arrange
-            const int GARDEN_SIZE = 0;
-            Garden garden = new Garden(GARDEN_SIZE);
+            //const int GARDEN_SIZE = 0;
+            //Garden garden = new Garden(GARDEN_SIZE);
+            Garden garden = CreateGardenInsignificantSize();
             const string? NULL_PLANT_NAME = null;
             const string EXPECTED_PARAMETER_NAME = "name";
 
@@ -124,8 +156,9 @@ namespace ConsoleApp.Test.xUnit
         public void Plant_EmptyName_ArgumentException()
         {
             //Arrange
-            const int GARDEN_SIZE = 0;
-            Garden garden = new Garden(GARDEN_SIZE);
+            //const int GARDEN_SIZE = 0;
+            //Garden garden = new Garden(GARDEN_SIZE);
+            Garden garden = CreateGardenInsignificantSize();
             const string EMPTY_PLANT_NAME = "";
             const string EXPECTED_PARAMETER_NAME = "name";
             string expectedMessage = Properties.Resources.WhitespaceNameException;
@@ -144,8 +177,9 @@ namespace ConsoleApp.Test.xUnit
         public void Plant_WhitespaceName_ArgumentException()
         {
             //Arrange
-            const int GARDEN_SIZE = 0;
-            Garden garden = new Garden(GARDEN_SIZE);
+            //const int GARDEN_SIZE = 0;
+            //Garden garden = new Garden(GARDEN_SIZE);
+            Garden garden = CreateGardenInsignificantSize();
             const string WHITESPACE_PLANT_NAME = " ";
             const string EXPECTED_PARAMETER_NAME = "name";
             string expectedMessage = Properties.Resources.WhitespaceNameException;
@@ -170,8 +204,9 @@ namespace ConsoleApp.Test.xUnit
         public void Plant_EmptyOrWhitespaceName_ArgumentException(string name)
         {
             //Arrange
-            const int GARDEN_SIZE = 0;
-            Garden garden = new Garden(GARDEN_SIZE);
+            //const int GARDEN_SIZE = 0;
+            //Garden garden = new Garden(GARDEN_SIZE);
+            Garden garden = CreateGardenInsignificantSize();
             const string EXPECTED_PARAMETER_NAME = "name";
             string expectedMessage = Properties.Resources.WhitespaceNameException;
 
@@ -189,8 +224,9 @@ namespace ConsoleApp.Test.xUnit
         public void GetPlants_CopyOfPlantsCollection()
         {
             //Arrange
-            const int GARDEN_SIZE = 0;
-            Garden garden = new Garden(GARDEN_SIZE);
+            //const int GARDEN_SIZE = 0;
+            //Garden garden = new Garden(GARDEN_SIZE);
+            Garden garden = CreateGardenInsignificantSize();
 
             //Act
             var result1 = garden.GetPlants();
@@ -199,5 +235,6 @@ namespace ConsoleApp.Test.xUnit
             //Assert
             Assert.NotSame(result1, result2);
         }
+
     }
 }
