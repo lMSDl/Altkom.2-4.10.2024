@@ -61,6 +61,42 @@ namespace ConsoleApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Brak miejsca w ogrodzie na {0}.
+        /// </summary>
+        public static string NoSpaceInGardenFor {
+            get {
+                return ResourceManager.GetString("NoSpaceInGardenFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roślina {0} została dodana do ogrodu.
+        /// </summary>
+        public static string PlantAddedToGarden {
+            get {
+                return ResourceManager.GetString("PlantAddedToGarden", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rozlina {0} zmieniła nazwę na {1}.
+        /// </summary>
+        public static string PlantNameChanged {
+            get {
+                return ResourceManager.GetString("PlantNameChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roślina {0} została usunięta z ogrodu.
+        /// </summary>
+        public static string PlantRemovedFromGarden {
+            get {
+                return ResourceManager.GetString("PlantRemovedFromGarden", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Roślina musi posiadać nazwę.
         /// </summary>
         public static string WhitespaceNameException {

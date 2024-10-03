@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 namespace ConsoleApp
 {
-    public class Logger
+    public class Logger : ILogger
     {
         private Dictionary<DateTime, string> _logs = new Dictionary<DateTime, string>();
 
@@ -15,6 +15,8 @@ namespace ConsoleApp
         {
             var dateTime = DateTime.Now;
             _logs[dateTime] = message;
+
+            throw new Exception();
 
             MessageLogged?.Invoke(this, new LoggerEventArgs(dateTime, message));
         }
